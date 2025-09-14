@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Website Browser Wrapper</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    #controls {
+      display: flex;
+      padding: 10px;
+      background: #eee;
+    }
+    #urlInput {
+      flex: 1;
+      padding: 8px;
+      font-size: 16px;
+    }
+    #goBtn {
+      padding: 8px 16px;
+      font-size: 16px;
+      margin-left: 8px;
+    }
+    iframe {
+      width: 100%;
+      height: calc(100vh - 60px);
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <input id="urlInput" type="text" placeholder="Enter website URL..." />
+    <button id="goBtn">Go</button>
+  </div>
+  <iframe id="viewer" src="https://example.com"></iframe>
+
+  <script>
+    const input = document.getElementById('urlInput');
+    const btn = document.getElementById('goBtn');
+    const frame = document.getElementById('viewer');
+
+    btn.addEventListener('click', () => {
+      let url = input.value.trim();
+      if (!url.startsWith('http')) {
+        url = 'https://' + url;
+      }
+      frame.src = url;
+    });
+  </script>
+</body>
+</html>
